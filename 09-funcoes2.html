@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funções 2</title>
+    <script>
+        /*
+            FUNÇÕES SEM VALOR DE RETORNO
+            São funções que executam alguma tarefa, mas não retornam
+            nenhum valor (não possuem uma linha com a palavra return
+            ou essa linha não chega a ser executada).
+            Tecnicamente, funções sem valor de retorno são denominadas
+            PROCEDIMENTOS.
+        */
+        function repetir(texto, tamanho) {
+            for(let i = 1; i <= tamanho; i++) {
+                document.write(texto)
+            }
+            document.write('<br>')
+        }
+
+        // Chamadas à função sem valor de retorno. Note que
+        // não atribuímos a chamada a uma variável
+        repetir('*', 80)
+        repetir('caju', 15)
+
+        // É inútil atribuir alguma variável à chamada de uma
+        // função sem retorno pois, como esta não retorna nada,
+        // a variável permanece undefined.
+        let x = repetir('-', 20) 
+
+        document.write(`Valor de x: ${x}<br>`)
+
+        /*
+            FUNÇÃO SEM PARÂMETROS
+            Eventualmente, uma função pode não precisar de dados
+            de entrada para executar seu trabalho. Nesse caso, mesmo
+            que não haja parâmetros, os parênteses que os envolvem
+            permanecem, tanto na declaração quanto na chamada da 
+            função.
+            Uma forma simples de diferenciar uma variável de uma
+            função no código é a presença dos parênteses, no caso
+            dessa última (IMPORTANTE: há exceções a essa regra!).
+        */
+        function horaAtual() {  // Não temos parâmetros, mas os parênteses permanecem
+            // Obtém a data/hora atual do computador
+            let agora = new Date()
+
+            return `${agora.getHours()}:${agora.getMinutes()}:${agora.getSeconds()}`
+        }
+
+        document.write(`Agora são ${horaAtual()} no meu computador.<br>`)
+
+        /*
+            FUNÇÃO SEM PARÂMETRO E TAMBÉM SEM VALOR DE RETORNO
+        */
+        function cumprimentar() {
+            let agora = new Date()
+            let hora = agora.getHours()
+
+            if(hora < 12) {
+                document.write('Bom dia!<br>')
+            }
+            else if(hora < 18) {
+                document.write('Boa tarde!<br>')
+            }
+            else {
+                document.write('Boa noite!<br>')
+            }
+        }
+
+        // Chamada à função
+        cumprimentar()
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

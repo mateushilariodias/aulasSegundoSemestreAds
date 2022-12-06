@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop while</title>
+    <script>
+        /*
+            Estruturas de repetição, também chamadas loops, são recursos
+            que todas as linguagens de programação disponibilizam para
+            possibilitar a execução de instruções mais de uma vez.
+        */
+
+        // 1) Loop while
+
+        /*
+            No programa abaixo, o usuário poderá informar uma quantidade
+            arbitrária de números (um de cada vez) e, quando o valor 0
+            for informado, será exibida a soma de todos os números que
+            foram anteriormente fornecidos.
+        */
+
+        let soma = 0, num
+
+        // Os parênteses são OBRIGATÓRIOS após a palavra while
+        while(num !== 0) {
+            num = Number(prompt('Informe um número:'))
+
+            // Ignora a entrada se não for um número válido
+            if(! isNaN(num)) {
+                soma += num     // Equivale a: soma = soma + num
+            }
+        }
+
+        document.write(`A soma dos números informados é ${soma}.`)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

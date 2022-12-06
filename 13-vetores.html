@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vetores</title>
+    <script>
+        /***************************************************
+         * VETORES
+         * 
+         * ~> Vetores permitem que múltiplos valores sejam
+         *    armazenados em uma única variável
+         * ~> Os valores são armazenados dentro do vetor em
+         *    posições NUMERADAS, sendo que a primeira delas
+         *    recebe o número ZERO (0).
+         * *************************************************/
+         
+        // 1) Declarando um vetor vazio. Note que o tamanho 
+        //    máximo do vetor não é especificado.
+        let vetorVazio1 = []        // Forma moderna
+        let vetorVazio2 = Array()   // Forma tradicional
+
+        // 2) Um vetor também pode ser declarado já com valores
+        let numeros1 = [10, 20, 30, 40, 50]
+        let numeros2 = Array(10, 20, 30, 40, 50)
+        // Em ambos os casos, o valor 10 está na posição 0,
+        // o valor 20 está na posição 1 e assim por diante
+
+        // 3) Vetores podem armazenar qualquer tipo de dado,
+        //    inclusive misturando-os em um mesmo vetor
+        let mix = ['Fulano de Tal', 23, 1.73, 67, false]
+
+        // Vetor de strings
+        let frutas = ['banana', 'maçã', 'pera', 'uva', 'mamão', 'pêssego']
+
+        // 4) Acessando elementos de um vetor: usa-se a respectiva posição,
+        //    lembrando-se de que a contagem inicia-se em zero
+        document.write('Primeira fruta: ' + frutas[0] + '<br>')
+        document.write('Quarta fruta: ' + frutas[3] + '<br>')
+        document.write(`Terceira fruta: ${frutas[2]}<br>`)
+
+        // 5) Para descobrir a quantidade de elementos de um vetor,
+        // usa-se length
+        document.write('Quantidade de frutas no vetor: ' + frutas.length + '<br>')
+
+        // 6) Acessando a última fruta
+
+        // Forma tradicional
+        document.write('Última fruta: ' + frutas[frutas.length - 1] + '<br>')
+
+        // Forma moderna
+        document.write('Última fruta: ' + frutas.at(-1) + '<br>')
+
+        // 7) Acrescentando um novo elemento no vetor
+        //    push() acrescenta sempre NO FINAL
+        frutas.push('melancia')
+
+        document.write(`Vetor: ${frutas}<br>`)
+        document.write(`Quant. elementos: ${frutas.length}<br>`)
+        document.write(`Última fruta: ${frutas.at(-1)}<br>`)
+
+        /*************************************************************/
+
+        document.write('<hr>')      // Traço horizontal
+        
+        let carros = []             // Novo vetor vazio
+
+        /* MÉTODOS DE INSERÇÃO */
+
+        // Inserção NO FINAL do vetor: push()
+        carros.push('Corcel')
+        document.write(`push() 1 elemento: ${carros}<br>`)
+
+        // push() é capaz de inserir vários elementos simultaneamente
+        carros.push('Fusca', 'Belina')
+        document.write(`push() +1 elemento: ${carros}<br>`)
+
+        // Inserção NO INÍCIO do vetor: unshift()
+        carros.unshift('Opala')
+        document.write(`unshift() 1 elemento: ${carros}<br>`)
+
+        // unshift() também é capaz de inserir vários elementos simultaneamente
+        carros.unshift('Chevette', 'Variant')
+        document.write(`unshift() + elemento: ${carros}<br>`)
+
+        // Inserção em POSIÇÃO INTERMEDIÁRIA: splice()
+        // Parâmetros:
+        // 1º ~> a posição de inserção
+        // 2º ~> quantidade de elementos que serão REMOVIDOS (nesse caso, 
+        //       sempre zero)
+        // 3º ~> valor(es) a ser(em) inserido(s)
+        carros.splice(3, 0, 'Maverick')
+        document.write(`splice() inserindo na pos. 3: ${carros}<br>`)
+
+        // splice() também pode inserir vários de uma vez
+        carros.splice(2, 0, 'Kombi', 'Del Rey', 'Brasília')
+        document.write(`splice() inserindo vários na pos. 2: ${carros}<br>`)
+
+        /* MÉTODOS DE REMOÇÃO */
+
+        // Remoção DO FINAL do vetor: pop()
+        let removido = carros.pop()
+        document.write(`Removido com pop(): ${removido}; vetor: ${carros}<br>`)
+
+        // Remoção DO INÍCIO do vetor: shift()
+        removido = carros.shift()
+        document.write(`Removido com shift(): ${removido}; vetor: ${carros}<br>`)
+
+        // Remoção em POSIÇÃO INTERMEDIÁRIA: splice()
+        // Parâmetros:
+        // 1º ~> posição onde ocorrerá a remoção
+        // 2º ~> quantidade de elementos a serem removidos
+        // OBS.: splice() *SEMPRE* retornará um vetor, mesmo que tenha
+        //       removido apenas um elemento
+        
+        // Remove 3 elementos a partir da posição 4
+        removido = carros.splice(4, 3)
+        document.write(`Removidos com splice(): ${removido}<br>`)
+        document.write(`Primeiro removido: ${removido[0]}<br>`)
+        document.write(`Segundo removido: ${removido[1]}<br>`)
+        document.write(`Terceiro removido: ${removido[2]}<br>`)
+        document.write(`Vetor após remoção com splice: ${carros}<br>`)
+
+        // splice() também pode ser usado para fazer substituições
+        // Parâmetros:
+        // 1º ~> posição onde ocorrerá a substituição
+        // 2º ~> quantidade de elementos a serem substituídos
+        // 3º ~> novo(s) valor(es) para o(s) elemento(s)
+        
+        // Substitui o elemento da posição 3 por 'Gol'
+        carros.splice(3, 1, 'Gol')
+        document.write(`Vetor após subst. na pos. 3 com splice ${carros}<br>`)
+
+        // Colocando mais alguns elementos para fazer os percursos
+        carros.push('147', 'Alfa Romeu', 'Galaxie')
+
+        document.write('<hr>')      // Traço horizontal
+
+        /**********************************************************
+         * PERCURSOS
+         * Percorrer um vetor significa visitar em sequência cada um
+         * de seus elementos, fazendo algo com cada elmento. Isso
+         * normalmente é feito com um loop for
+         * ********************************************************/
+
+        // 1) PERCURSO EM ORDEM CRESCENTE COM FOR TRADICIONAL
+        document.write(`For tradicional em ordem crescente (length: ${carros.length})<br>`)
+        for(let x = 0; x < carros.length; x++) {
+            document.write('Posição: ' + x + ', valor: ' + carros[x] + '<br>')
+        }
+
+        document.write('<hr>')
+
+        // 2) PERCURSO EM ORDEM DECRESCENTE COM FOR TRADICIONAL
+        document.write(`For tradicional em ordem decrescente (length: ${carros.length})<br>`)
+        for(let n = carros.length - 1; n >= 0; n--) {
+            document.write(`Posição: ${n}, valor: ${carros[n]}<br>`)
+        }
+
+        document.write('<hr>')
+
+        // 3) PERCURSO COM FOR..OF
+        // Vantagens:
+        // - Não é preciso se preocupar com length
+        // - É o que precisamos em 99% das vezes
+        // Desvantagens:
+        // - Não permite percursos parciais ou em ordem inversa
+        // - Não dá acesso à posição de cada elemento
+        document.write(`Percurso com for..of<br>`)
+        for(let c of carros) {
+            document.write(c + '<br>')
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

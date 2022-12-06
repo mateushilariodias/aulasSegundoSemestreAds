@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop do..while</title>
+    <script>
+        // 2) Loop do..while
+
+        /*
+            No programa abaixo, repetimos a solicitação ao usuário
+            até que ele forneça uma resposta satisfatória.
+        */
+        let num
+
+        do {
+
+            num = parseInt(prompt('Informe um número inteiro entre 1 e 10:'))
+
+        } while(isNaN(num) || num < 1 || num > 10)
+
+        document.write(`Você informou ${num}.`)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

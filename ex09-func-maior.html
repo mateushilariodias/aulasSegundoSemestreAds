@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 09</title>
+    <script>
+        /*
+            Declare uma função que receba dois números e retorne
+            o maior entre eles.
+            Caso os dois números sejam iguais, retorne o valor
+            undefined.
+            Implemente a chamada à função usando dois valores
+            fornecidos pelo usuário.
+        */
+
+        function maior(n, m) {
+            if(n > m) {
+                return n
+            }
+            else if(m > n) {
+                return m
+            }
+            else {
+                return undefined
+            }
+        }
+
+        document.write(`Maior entre 5 e 10: ${maior(5, 10)}<br>`)
+        document.write(`Maior entre 19 e 7: ${maior(19, 7)}<br>`)
+        document.write(`Maior entre 8 e 8: ${maior(8, 8)}<br>`)
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

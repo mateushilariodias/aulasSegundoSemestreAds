@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>switch/case</title>
+    <script>
+        /*
+            CALCULADORA SIMPLES
+            Este programa solicita que o usuário informe
+            dois números e um operador matemático, efetua
+            a operação correspondente e exibe o resultado.
+            Operadores aceitos:
+            + para adição
+            - para subtração
+            *, X ou x para multiplicação
+            / ou : para divisão
+        */
+
+        // Primeiro número
+        let num1 = Number(prompt('Informe o primeiro número:'))
+
+        // Segundo número
+        let num2 = Number(prompt('Informe o segundo número:'))
+
+        // Operador
+        let oper = prompt('Operador (+, -, *, X, x, / ou :):')
+
+        let resultado
+
+        // Validação dos dados de entrada
+        if(isNaN(num1)) {
+            alert('ERRO: primeiro número inválido ou não informado.')
+        }
+        else if(isNaN(num2)) {
+            alert('ERRO: segundo número inválido ou não informado.')
+        }
+        // Daqui em diante os números são válidos e passamos a verificar
+        // qual foi o operador escolhido
+        else {
+            switch(oper) {
+                case '+':
+                    resultado = num1 + num2
+                    break
+                case '-':
+                    resultado = num1 - num2
+                    break
+                case '*':   // case vazio
+                case 'X':   // case vazio
+                case 'x':
+                    resultado = num1 * num2
+                    break
+                case '/':   // case vazio
+                case ':':
+                    resultado = num1 / num2
+                    break
+                default:
+                    alert('ERRO: operador desconhecido.')
+            }
+        }
+
+        if(resultado !== undefined) {
+            document.write('O resultado do cálculo é ' + resultado)
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

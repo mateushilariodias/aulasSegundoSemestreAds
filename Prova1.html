@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROVA 1 (Turma B)</title>
+    <script>
+        /*
+            2. Peça ao usuário para informar o número correspondente a um dos
+            quilômetros da rodovia, um inteiro entre 1 e 400. Valide a entrada 
+            com do..while.
+        */
+        let km
+        do {
+            km = parseInt(prompt('Informe o quilômetro, entre 1 e 400:'))
+        } while(isNaN(km) || km < 1 || km > 400)
+        /*
+            3. Em   seguida,   usando   uma   construção  if..else,   informe   
+            ao   usuário,   usando document.write(), se o km informado possui 
+            ou não pedágio.
+        */
+        if(km % 37 === 0) {
+            document.write('<br>O quilômetro informado POSSUI pedágio.')
+        }
+        else {
+            document.write('<br>O quilômetro informado não possui pedágio.')
+        }
+        /*
+            4. Continuando, monte uma estrutura switch..case para verificar 
+            se no km informado há alguma das melhorias previstas e informar 
+            ao usuário, se for o caso. Se não houver nada,  informe  ‘Nada 
+            aqui. Siga em frente…’. Exiba o resultado do  switch..case 
+            usando document.write().
+        */
+        switch(km) {
+            case 97:
+            case 189:
+            case 282:
+            case 378:
+                document.write('<br>Posto de recarga para carros elétricos')
+                break
+            case 150:
+            case 350:
+                document.write('<br>Posto da Polícia Rodoviária')
+                break
+            case 144:
+            case 290:
+                document.write('<br>Integração com trem ultrarrápido')
+                break
+            case 203:
+                document.write('<br>Pernoite seguro para caminhoneiros')
+                break
+            case 310:
+                document.write('<br>Shopping center')
+                break
+            case 354:
+                document.write('<br>Acesso a parque de diversões')
+                break
+            default:
+                document.write('<br>Nada aqui. Siga em frente…')
+        }   
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

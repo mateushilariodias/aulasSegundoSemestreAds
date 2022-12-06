@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funções</title>
+    <script>
+        /*
+            Imagine que precisemos calcular o fatorial de dois números
+            em código, sem precisar pedi-los ao usuário
+        */
+        let n1 = 8, n2 = 5
+        // Calculando o fatorial de n1
+        let fatorialN1 = 1
+        for(let x = n1; x >= 1; x--) {
+            fatorialN1 *= x
+        }
+        // Calculando o fatorial de n2
+        let fatorialN2 = 1
+        for(let x = n2; x >= 1; x--) {
+            fatorialN2 *= x
+        }
+        document.write(`O fatorial de ${n1} é ${fatorialN1}<br>.`)
+        document.write(`O fatorial de ${n2} é ${fatorialN2}<br>.`)
+
+        /*
+            FUNÇÕES são trechos de código que podem ser PARAMETRIZADOS
+            de forma a serem escritos apenas uma vez e utilizados
+            várias vezes.
+            O trabalho com uma função envolve duas etapas:
+            1) A DECLARAÇÃO da função: é feita uma única vez, e reserva
+               um trecho de código para utilização posterior.
+            2) A CHAMADA à função: pode ser feita várias vezes, e executa
+               efetivamente a função previamente declarada
+        */
+
+        // DECLARAÇÃO da função que calcula o fatorial de um número
+        function calcFatorial(n) {
+            let fatorial = 1
+            for(let x = n; x >= 1; x--) {
+                fatorial *= x
+            }
+            return fatorial
+        }
+
+        // CHAMADAS à função previamente declarada
+        let fat4 = calcFatorial(4)
+        let fat7 = calcFatorial(7)
+        let fat9 = calcFatorial(9)
+
+        document.write(`4! = ${fat4}; 7! = ${fat7}; 9! = ${fat9}<br>`)
+
+        // DECLARAÇÃO de uma função que calcula o IMC (Índice de Massa
+        // Corporal), com 2 parâmetros
+        function calcularImc(peso, altura) {
+            let resultado = peso / altura ** 2
+            return resultado
+        }
+
+        // Chamada à função com parâmetros determinados em código
+        let imc1 = calcularImc(80, 1.72)
+
+        // toFixed() limita a quantidade de casas decimais
+        document.write(`O IMC para uma pessoa que pesa 80kg e tem 1,72m de altura é ${imc1.toFixed(2)}.<br>`)
+
+        let pesoPessoa, alturaPessoa
+
+        do {
+            pesoPessoa = parseFloat(prompt('Informe o peso da pessoa:'))
+        } while(isNaN(pesoPessoa) || pesoPessoa < 0 || pesoPessoa > 150)
+
+        do {
+            alturaPessoa = parseFloat(prompt('Informe a altura da pessoa:'))
+        } while(isNaN(alturaPessoa) || alturaPessoa < 0.4 || alturaPessoa > 2.4)
+
+        // Chamada à função com parâmetros cujos valores foram fornecidos
+        // pelo usuário
+        let imcPessoa = calcularImc(pesoPessoa, alturaPessoa)
+
+        document.write(`O IMC para uma pessoa que pesa ${pesoPessoa}kg e tem ${alturaPessoa}m de altura é ${imcPessoa.toFixed(3)}.<br>`)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

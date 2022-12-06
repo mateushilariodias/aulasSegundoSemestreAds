@@ -1,0 +1,28 @@
+*{
+    background-color: rgb(255, 255, 255);
+    margin: 30px; /*Criei uma regra CSS para aumentar o espaçamento entre os limites dapágina e o texto, nos quatro lados do documento.*/
+    font-family: 'Inconsolata', monospace; /*Escolhi uma fonte do Google Fonts e utilizei em toda a página.*/
+}
+.centro{
+    text-align: center;
+}
+div{
+    text-align: center;
+}
+img{ /*Centralizei  a  imagem  horizontalmente e apliquei bordas arredondadas e sombra à imagem.*/
+    width: 300px;
+    height: 300px;
+    border-radius: 16px;
+    box-shadow: 4px 4px 4px rgb(180, 128, 128);
+    
+}
+blockquote{
+    text-align: right;
+    padding: 0;
+}
+h1, h2{
+    color: blue; /*Apliquei uma cor diferente do restante do texto nos títulos de nível 1 e 2,*/
+}
+h2{
+    border-bottom:  2px solid rgb(5, 5, 24); /* Para passar um traço inferior nos títulos de nível 2.*/
+}

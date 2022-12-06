@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de saudação</title>
+    <style>
+        * { /* Todos os elementos */
+            font-family: Calibri, Arial, sans-serif;
+        }
+        span, label {
+            display: block; /* Passa a ocupar a linha inteira */
+        }
+        div, fieldset {
+            margin-bottom: 20px;    /* Margem inferior */
+        }
+        fieldset span { /* Regra atinge só spans dentro de um fieldset */
+            display: inline;    /* Permite elementos lado a lado na mesma linha */
+        }
+        #saudacao {
+            border: 3px solid navy;
+            padding: 10px; /* Espaçamento interno */
+            background-color: lightskyblue;
+            text-align: center;
+            border-radius: 10px;    /* Borda arredondada */
+        }
+    </style>
+</head>
+<body>
+    <h1>Gerador de saudação</h1>
+    <div>
+        <label>
+            <span>Primeiro nome</span>
+            <input id="primeiro-nome">
+        </label>
+    </div>
+    <div>
+        <label>
+            <span>Sobrenome</span>
+            <input id="sobrenome">
+        </label>
+    </div>
+    <div>
+        <label>
+            <span>Forma de tratamento</span>
+            <select id="tratamento">
+                <option>Selecione</option>
+                <option>Vossa Majestade</option>
+                <option>Excelentíssimo/a</option>
+                <option>Ilustríssimo/a</option>
+                <option>Vossa Senhoria</option>
+                <option>Senhor/ora</option>
+                <option>Cremosíssimo/a</option>
+            </select>
+        </label>
+    </div>
+    <fieldset>
+        <legend>Sexo</legend>
+        <!-- 
+            Para que os inputs do tipo radio funcionem como opções mutuamente
+            exclusivas, é necessário que todos eles tenham o mesmo valor no
+            atributo name.
+        -->
+        <label>
+            <input id="masculino" type="radio" name="sexo" checked>
+            &nbsp; <!-- Espaço não separável -->
+            <span>Masculino</span>
+        </label>
+        <label>
+            <input id="feminino" type="radio" name="sexo">
+            &nbsp;
+            <span>Feminino</span>
+        </label>
+    </fieldset>
+    <div>
+        <label>
+            <span>Hora do dia</span>
+            <input id="horario" type="number" min="0" max="23">
+        </label>
+    </div>
+    <fieldset>
+        <legend>Opções de exibição</legend>
+        <label>
+            <input id="exibir-alert" type="checkbox">
+            &nbsp;
+            <span>Exibir com alert()</span>
+        </label>
+        <label>
+            <input id="exibir-doc" type="checkbox">
+            &nbsp;
+            <span>Exibir no documento</span>
+        </label>
+    </fieldset>
+    <div id="saudacao">
+        <!-- Aqui aparecerá o texto da saudação se a opção "Exibir no documento" 
+        estiver marcada -->
+    </div>
+    <div>
+        <button id="enviar">Enviar</button>
+    </div>
+
+    <script>
+        /* Capturar TODOS os elementos que têm id */
+        const primeiroNome = document.querySelector('#primeiro-nome')
+        const sobrenome = document.querySelector('#sobrenome')
+        const tratamento = document.querySelector('#tratamento')
+        const masculino = document.querySelector('#masculino')
+        const feminino = document.querySelector('#feminino')
+
+        const horario = document.getElementById('horario')
+        const exibirAlert = document.getElementById('exibir-alert')
+        const exibirDoc = document.getElementById('exibir-doc')
+        const saudacao = document.getElementById('saudacao')
+        const enviar = document.getElementById('enviar')
+
+        /* Validação do formulário */
+        function validar() {
+
+            if(primeiroNome.value === '') {
+                alert('O primeiro nome deve ser preenchido.')
+                primeiroNome.focus()    // Coloca o cursor no campo
+                return false
+            }
+
+            if(sobrenome.value === '') {
+                alert('O sobrenome deve ser preenchido.')
+                sobrenome.focus()
+                return false
+            }
+
+            if(tratamento.selectedIndex <= 0) {
+                alert('Selecione uma forma de tratamento.')
+                tratamento.focus()
+                return false
+            }
+
+            let valorHorario = parseInt(horario.value)
+            if(isNaN(valorHorario) || valorHorario < 0 || valorHorario > 23) {
+                alert('Hora do dia inválida ou não informada.')
+                horario.focus()
+                return false
+            }
+
+            // Pelo menos uma das opções "Exibir com alert()" ou
+            // "Exibir no documento" deve estar marcada
+            let alertMarcado = exibirAlert.checked
+            let docMarcado = exibirDoc.checked
+            if(! alertMarcado && ! docMarcado) {
+                alert('Pelo menos uma das opções de exibição deve estar marcada.')
+                exibirAlert.focus()
+            }
+
+            return true
+        }
+
+        function montarSaudacao() {
+            // Só monta a saudação se o formulário for válido
+            if(validar()) {
+
+                /* 
+                    Exemplo de texto de saudação que será montado
+                    pelo código abaixo:
+                    Boa noite, Excelentíssima Maricota Catupirina! Como posso ser útil?
+                */
+
+                let textoSaudacao = ''
+
+                // Verifica a hora do dia selecionada para determinar se
+                // dará bom dia, boa tarde ou boa noite
+                if(horario.value < 12) {
+                    textoSaudacao = 'Bom dia, '
+                }
+                else if(horario.value < 18) {
+                    textoSaudacao = 'Boa tarde, '
+                }
+                else {
+                    textoSaudacao = 'Boa noite, '
+                }
+
+                // Decide qual forma de tratamento usar, considerando
+                // o sexo escolhido
+                switch(tratamento.selectedIndex) {
+                    case 1:
+                        textoSaudacao += 'Vossa Majestade '
+                        break
+                    case 2:
+                        if(masculino.checked) {
+                            textoSaudacao += 'Excelentíssimo '
+                        }
+                        else {
+                            textoSaudacao += 'Excelentíssima '
+                        }
+                        break
+                    case 3:
+                        if(masculino.checked) {
+                            textoSaudacao += 'Ilustríssimo '
+                        }
+                        else {
+                            textoSaudacao += 'Ilustríssima '
+                        }
+                        break
+                    case 4:
+                        textoSaudacao += 'Vossa Senhoria '
+                        break
+                    case 5:
+                        if(masculino.checked) {
+                            textoSaudacao += 'Senhor '
+                        }
+                        else {
+                            textoSaudacao += 'Senhora '
+                        }
+                        break
+                    default:
+                        if(masculino.checked) {
+                            textoSaudacao += 'Cremosíssimo '
+                        }
+                        else {
+                            textoSaudacao += 'Cremosíssima '
+                        }
+                }
+
+                // Adiciona o nome e o sobrenome
+                textoSaudacao += primeiroNome.value + ' '
+                textoSaudacao += sobrenome.value
+
+                // Adiciona o final da saudação
+                textoSaudacao += '! Como posso ser útil?' 
+
+                // Exibe com alert(), se essa opção estiver marcada
+                if(exibirAlert.checked) {
+                    alert(textoSaudacao)
+                    saudacao.textContent = ''   // Limpa a saudação no documento
+                }
+
+                // Exibe na div do documento, se essa opção estiver marcada
+                if(exibirDoc.checked) {
+                    saudacao.textContent = textoSaudacao
+                }
+
+            }
+        }
+
+        enviar.addEventListener('click', montarSaudacao)
+    </script>
+</body>
+</html>

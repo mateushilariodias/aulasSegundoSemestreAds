@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos</title>
+    <style>
+        #quadrado {
+            height: 300px;  /* altura */
+            width: 300px;   /* largura */
+            border: 3px solid navy;
+            background-color: cornflowerblue;
+            transition: background-color 1s;
+        }
+        #limpar {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="quadrado"></div>
+
+    <div>
+        <label>
+            <span>Digite seu nome:</span><br>
+            <input id="nome">
+        </label>
+    </div>
+
+    <p id="msg"></p>
+    <button id="limpar">Limpar</button>
+
+    <script>
+
+        // Capturando os elementos que têm id
+        const quadrado = document.querySelector('#quadrado')
+        const msg = document.querySelector('#msg')
+        
+        const limpar = document.getElementById('limpar')
+        const nome = document.getElementById('nome')
+
+        let contador = 0
+
+        function quandoMouseEntrar() {
+            quadrado.style.backgroundColor = 'pink'
+            limpar.style.visibility = 'visible'
+        }
+
+        function quandoMouseSair() {
+            quadrado.style.backgroundColor = 'cornflowerblue'
+            contador = 0
+        }
+
+        function quandoMouseMover() {
+            contador += 1
+            msg.textContent = `Contador: ${contador}`
+        }
+
+        function quandoDuploClique() {
+            if(quadrado.style.width === '300px') {
+                quadrado.style.width = '150px'
+                quadrado.style.height = '150px'
+            }
+            else {
+                quadrado.style.width = '300px'
+                quadrado.style.height = '300px'
+            }
+        }
+
+        function botaoClique() {
+            msg.textContent = ''
+            contador = 0
+        }
+
+        function quandoSoltarTecla() {
+            msg.textContent = nome.value.toUpperCase()
+        }
+
+        // Vamos interceptar o evento 'mouseenter' do quadrado,
+        // evento esse que ocorre quando o ponteiro do mouse paira
+        // sobre um elemento. Quando isso acontecer, vamos executar
+        // a função quandoMouseEntrar. Esse é um dos raros casos em
+        // que faremos referência a uma função SEM usar os PARÊNTESES.
+        quadrado.addEventListener('mouseenter', quandoMouseEntrar)
+
+        // mouseleave ~> o ponteiro do mouse saiu do elemento
+        quadrado.addEventListener('mouseleave', quandoMouseSair)
+
+        // mousemove ~> o ponteiro do mouse se mexeu dentro do elemento
+        quadrado.addEventListener('mousemove', quandoMouseMover)
+
+        // dblclick ~> duplo clique do mouse sobre o elemento
+        quadrado.addEventListener('dblclick', quandoDuploClique)
+
+        // click ~> botão clicado
+        limpar.addEventListener('click', botaoClique)
+
+        // keyup ~> uma tecla anteriormente pressionada foi solta
+        nome.addEventListener('keyup', quandoSoltarTecla)
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrada e saída</title>
+    <script>
+
+        /*
+            Programa que pede para que o usuário informe
+            dois números e exibe a soma
+        */
+
+        // Variáveis que serão necessárias
+        let num1, num2, soma
+
+        // Pede o primeiro número e converte de string para número
+        // fracionário com parseFloat()
+        num1 = parseFloat(prompt('Informe o primeiro número:'))
+        
+        // Pede o segundo número e converte de string para número
+        // fracionário com parseFloat()
+        num2 = parseFloat(prompt('Informe o segundo número:'))
+
+        // Testa se a conversão feita com parseFloat() deu certo.
+        // Se deu errado, avisa ao usuário
+        if(isNaN(num1)) {   // Conversão de num1 falhou
+            alert('O primeiro número é inválido ou não foi informado.')
+        }
+        else if(isNaN(num2)) { // Conversão de num2 falhou
+            alert('O segundo número é inválido ou não foi informado.')
+        }
+        else {  // A conversão de ambos os números deu certo
+            // Efetua o cálculo
+            soma = num1 + num2
+
+            // Exibe o resultado ao usuário em uma caixa de diálogo
+            alert('A soma dos dois números é ' + soma)
+
+            // Exibe o resultado ao usuário no body da página
+            document.write('A soma dos dois números é ' + soma)
+
+            // Exibe no console do navegador
+            console.log('A soma dos dois números é ' + soma)
+        }
+        
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
